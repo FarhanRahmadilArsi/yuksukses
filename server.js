@@ -4,7 +4,9 @@ const fs = require('fs').promises;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DB_PATH = path.join(__dirname, 'db.json');
+const DB_PATH = process.env.VERCEL
+  ? path.join('/tmp', 'db.json')
+  : path.join(__dirname, 'db.json');
 
 const seedData = [
   { nama: 'Andi Prasetyo', email: 'andi.prasetyo@hrsync.id', telepon: '08123456789', jabatan: 'Senior Software Engineer', departemen: 'Engineering', tanggal: '2022-03-15' },
@@ -115,6 +117,10 @@ app.delete('/api/employees/:id', async (req, res) => {
   res.status(204).send();
 });
 
-app.listen(PORT, () => {
-  console.log(`Server berjalan di http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server berjalan di http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

@@ -1,0 +1,167 @@
+[
+  {
+    "id": "EMP-2026-0001",
+    "nama": "Andi Prasetyo",
+    "email": "andi.prasetyo@hrsync.id",
+    "telepon": "08123456789",
+    "jabatan": "Senior Software Engineer",
+    "departemen": "Engineering",
+    "tanggal": "2022-03-15",
+    "createdAt": 1780037621701,
+    "updatedAt": 1780037621701
+  },
+  {
+    "id": "EMP-2026-0002",
+    "nama": "Siti Rahayu",
+    "email": "siti.rahayu@hrsync.id",
+    "telepon": "08234567890",
+    "jabatan": "Product Manager",
+    "departemen": "Product",
+    "tanggal": "2021-07-01",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0003",
+    "nama": "Budi Santoso",
+    "email": "budi.santoso@hrsync.id",
+    "telepon": "08345678901",
+    "jabatan": "UI/UX Designer",
+    "departemen": "Design",
+    "tanggal": "2023-01-10",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0004",
+    "nama": "Dewi Lestari",
+    "email": "dewi.lestari@hrsync.id",
+    "telepon": "08456789012",
+    "jabatan": "Marketing Lead",
+    "departemen": "Marketing",
+    "tanggal": "2020-11-20",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0005",
+    "nama": "Rizky Firmansyah",
+    "email": "rizky.firmansyah@hrsync.id",
+    "telepon": "08567890123",
+    "jabatan": "Sales Executive",
+    "departemen": "Sales",
+    "tanggal": "2023-06-05",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0006",
+    "nama": "Nurul Hidayah",
+    "email": "nurul.hidayah@hrsync.id",
+    "telepon": "08678901234",
+    "jabatan": "HR Manager",
+    "departemen": "Human Resources",
+    "tanggal": "2019-04-12",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0007",
+    "nama": "Fajar Ramadhan",
+    "email": "fajar.ramadhan@hrsync.id",
+    "telepon": "08789012345",
+    "jabatan": "Finance Analyst",
+    "departemen": "Finance",
+    "tanggal": "2022-08-30",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0008",
+    "nama": "Mega Wulandari",
+    "email": "mega.wulandari@hrsync.id",
+    "telepon": "08890123456",
+    "jabatan": "Operations Manager",
+    "departemen": "Operations",
+    "tanggal": "2021-02-14",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0009",
+    "nama": "Hendra Wijaya",
+    "email": "hendra.wijaya@hrsync.id",
+    "telepon": "08901234567",
+    "jabatan": "Backend Developer",
+    "departemen": "Engineering",
+    "tanggal": "2023-09-01",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0010",
+    "nama": "Putri Amelia",
+    "email": "putri.amelia@hrsync.id",
+    "telepon": "08112345678",
+    "jabatan": "Customer Success Mgr",
+    "departemen": "Customer Success",
+    "tanggal": "2026-05-29",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0011",
+    "nama": "Dimas Kurniawan",
+    "email": "dimas.kurniawan@hrsync.id",
+    "telepon": "08223456789",
+    "jabatan": "DevOps Engineer",
+    "departemen": "Engineering",
+    "tanggal": "2022-12-01",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0012",
+    "nama": "Ayu Puspita",
+    "email": "ayu.puspita@hrsync.id",
+    "telepon": "08334567890",
+    "jabatan": "Legal Counsel",
+    "departemen": "Legal",
+    "tanggal": "2020-05-18",
+    "createdAt": 1780037621702,
+    "updatedAt": 1780037621702
+  },
+  {
+    "id": "EMP-2026-0013",
+    "nama": "Vivi Caantik",
+    "email": "vivi@gmail.com",
+    "telepon": "088291194447",
+    "tanggal": "2007-08-31",
+    "jabatan": "Backend Developer",
+    "departemen": "IT Support",
+    "createdAt": 1780038170948,
+    "updatedAt": 1780038170948
+  },
+  {
+    "id": "EMP-2026-0014",
+    "nama": "Rey Ganteng",
+    "email": "reygntng@gmail.com",
+    "telepon": "088291247968",
+    "tanggal": "2004-08-09",
+    "jabatan": "Junior Programmer",
+    "departemen": "Engineering",
+    "createdAt": 1780038322273,
+    "updatedAt": 1780038322273
+  },
+  {
+    "id": "EMP-2026-0015",
+    "nama": "FARHAN RAHMADIL ARSI",
+    "email": "guefarhan@gmail.com",
+    "telepon": "088291247968",
+    "tanggal": "2004-07-09",
+    "jabatan": "Full Stuck",
+    "departemen": "Engineering",
+    "createdAt": 1780039060045,
+    "updatedAt": 1780039060045
+  }
+]

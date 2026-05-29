@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrasi Karyawan — YUK SUKSES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50:  '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#172554',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 font-sans transition-colors duration-300 min-h-screen">
+
+  <nav class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-8">
+          <div class="flex items-center gap-3">
+            <img src="assets/logo-yuk-sukses-new.png" alt="Logo YUK SUKSES" class="brand-logo" />
+            <div>
+              <span class="brand-title text-lg font-800 tracking-tight">YUK SUKSES</span>
+              <span class="brand-subtitle hidden sm:inline text-xs ml-2 font-medium">Manajemen Karyawan</span>
+            </div>
+          </div>
+          <div class="hidden md:flex items-center gap-6">
+            <a href="index.html" class="text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-brand-600 transition">Dashboard</a>
+            <a href="registrasi.html" class="text-sm font-semibold text-brand-600 dark:text-white">Registrasi</a>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition">Kembali</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8">
+    <section class="section-hero section-card overflow-hidden">
+      <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-center p-8 sm:p-10">
+        <div>
+          <span class="gold-pill inline-flex items-center rounded-full text-xs font-semibold px-3 py-1">Registrasi Karyawan</span>
+          <h1 class="shiny-heading mt-6 text-3xl sm:text-4xl font-serif font-800 tracking-tight">Buat akun karyawan baru dengan cepat dan profesional.</h1>
+          <p class="mt-4 text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-xl">Lengkapi data karyawan baru dalam satu langkah. Sistem ini membantu manajemen HR untuk menyimpan data penting, mengelola jabatan, dan mempercepat proses onboarding.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#formSection" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 hover:bg-brand-700 transition">Mulai Registrasi</a>
+            <a href="index.html" class="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 hover:border-brand-300 hover:text-brand-600 transition">Lihat Dashboard</a>
+          </div>
+        </div>
+
+        <div class="hero-panel rounded-3xl bg-brand-50/90 dark:bg-brand-950/25 p-8 sm:p-10 ring-1 ring-brand-500/10">
+          <div class="hero-brand-lockup">
+            <img src="assets/brand-farhan-hero-blue.png" alt="Farhan Rahmadil Arsy Registrasi dan Manajemen Karyawan" />
+          </div>
+          <div class="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400 mb-5">Langkah mudah</div>
+          <div class="space-y-5">
+            <div class="flex gap-4">
+              <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-600 text-white font-bold">1</div>
+              <div>
+                <p class="font-semibold text-slate-900 dark:text-white">Isi data lengkap</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Nama, email, telepon, jabatan, dan departemen.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-600 text-white font-bold">2</div>
+              <div>
+                <p class="font-semibold text-slate-900 dark:text-white">Periksa kembali</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Pastikan data sudah benar sebelum menyimpan.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-600 text-white font-bold">3</div>
+              <div>
+                <p class="font-semibold text-slate-900 dark:text-white">Selesai</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Data karyawan tersimpan dan siap dikelola.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="formSection" class="section-card p-8 sm:p-10">
+      <div class="mb-8">
+        <span class="gold-kicker text-sm font-semibold">Form Registrasi</span>
+        <h2 class="shiny-heading mt-3 text-2xl font-800">Isi data karyawan baru</h2>
+        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 max-w-2xl">Formulir ini siap digunakan untuk registrasi karyawan baru dan mendukung semua informasi dasar tim Anda.</p>
+      </div>
+      <form id="registrationForm" novalidate class="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Nama Lengkap</label>
+          <input id="regNama" type="text" placeholder="Nama lengkap" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-400 focus:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100" />
+          <p id="errRegNama" class="hidden text-xs text-red-500 mt-1"></p>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email</label>
+          <input id="regEmail" type="email" placeholder="nama@perusahaan.com" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-400 focus:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100" />
+          <p id="errRegEmail" class="hidden text-xs text-red-500 mt-1"></p>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Nomor Telepon</label>
+          <input id="regTelepon" type="tel" placeholder="08xx-xxxx-xxxx" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-400 focus:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100" />
+          <p id="errRegTelepon" class="hidden text-xs text-red-500 mt-1"></p>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tanggal Masuk</label>
+          <input id="regTanggal" type="date" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-400 focus:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100" />
+          <p id="errRegTanggal" class="hidden text-xs text-red-500 mt-1"></p>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Jabatan</label>
+          <input id="regJabatan" type="text" placeholder="Software Engineer" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-400 focus:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100" />
+          <p id="errRegJabatan" class="hidden text-xs text-red-500 mt-1"></p>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Departemen</label>
+          <select id="regDepartemen" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-400 focus:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+            <option>Engineering</option>
+            <option>Product</option>
+            <option>Design</option>
+            <option>Marketing</option>
+            <option>Sales</option>
+            <option>Finance</option>
+            <option>Human Resources</option>
+            <option>Operations</option>
+          </select>
+          <p id="errRegDepartemen" class="hidden text-xs text-red-500 mt-1"></p>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Catatan Tambahan</label>
+          <textarea id="regCatatan" rows="4" placeholder="Tambahkan catatan singkat" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-400 focus:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"></textarea>
+        </div>
+
+        <div class="sm:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div class="text-sm text-slate-500 dark:text-slate-400">Data akan tersimpan dan bisa dilihat di dashboard karyawan.</div>
+          <button id="registrationSubmitBtn" type="submit" class="inline-flex items-center justify-center rounded-2xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-700 transition">
+            <span id="registrationSubmitText">Simpan Registrasi</span>
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <div id="registrationSuccessModal" class="registration-success fixed inset-0 z-50 hidden items-center justify-center bg-black/45 p-4 backdrop-blur-sm">
+    <div class="registration-success-box w-full max-w-md rounded-2xl bg-white p-6 text-center shadow-2xl dark:bg-slate-900">
+      <div class="success-ring mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full">
+        <svg class="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <p class="text-sm font-semibold uppercase text-brand-600">Registrasi Berhasil</p>
+      <h3 id="successEmployeeName" class="mt-2 text-2xl font-800 text-slate-900 dark:text-white">Karyawan tersimpan</h3>
+      <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Data karyawan baru sudah masuk ke sistem dan siap dikelola dari dashboard.</p>
+      <div class="mt-5 grid grid-cols-2 gap-3 text-left">
+        <div class="rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
+          <p class="text-xs font-semibold text-slate-400">ID</p>
+          <p id="successEmployeeId" class="mt-1 truncate text-sm font-800 text-slate-800 dark:text-slate-100">-</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
+          <p class="text-xs font-semibold text-slate-400">Departemen</p>
+          <p id="successEmployeeDept" class="mt-1 truncate text-sm font-800 text-slate-800 dark:text-slate-100">-</p>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-col gap-2 sm:flex-row">
+        <button id="closeRegistrationSuccess" type="button" class="flex-1 rounded-xl bg-slate-100 px-4 py-3 text-sm font-700 text-slate-700 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700">Tutup</button>
+        <a href="index.html" class="flex-1 rounded-xl bg-brand-600 px-4 py-3 text-sm font-700 text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700">Lihat Dashboard</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <footer class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-slate-500 dark:text-slate-400">
+    <p>Dibuat oleh: FARHAN RAHMADIL ARSY @ COPYRIGHT 2026 <span class="brand-title brand-title-footer font-semibold"> YUK SUKSES </span></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "web-registrasi-karyawan",
+  "version": "1.0.0",
+  "description": "A simple employee registration dashboard with local JSON database.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.4"
+  }
+}

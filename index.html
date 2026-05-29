@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YUK SUKSES — Sistem Manajemen Karyawan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50:  '#eef3ff',
+              100: '#dce7ff',
+              200: '#bbd2ff',
+              300: '#8db3ff',
+              400: '#5988ff',
+              500: '#3461fb',
+              600: '#1f3ff0',
+              700: '#172ddc',
+              800: '#1926b3',
+              900: '#1a268d',
+              950: '#111660',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 font-sans transition-colors duration-300 min-h-screen">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-8">
+          <div class="flex items-center gap-3">
+            <img src="assets/logo-yuk-sukses-new.png" alt="Logo YUK SUKSES" class="brand-logo" />
+            <div>
+              <span class="brand-title text-lg font-800 tracking-tight">YUK SUKSES</span>
+              <span class="brand-subtitle hidden sm:inline text-xs ml-2 font-medium">Manajemen Karyawan</span>
+            </div>
+          </div>
+          <div class="hidden md:flex items-center gap-6">
+            <a href="index.html" class="text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-brand-600 transition">Dashboard</a>
+            <a href="registrasi.html" class="text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-brand-600 transition">Registrasi</a>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Search bar (desktop) -->
+          <div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl px-3 py-2 gap-2 w-60 border border-transparent focus-within:border-brand-400 focus-within:bg-white dark:focus-within:bg-slate-700 transition-all duration-200">
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input id="searchInput" type="text" placeholder="Cari karyawan..." class="bg-transparent text-sm text-slate-700 dark:text-slate-300 placeholder-slate-400 outline-none w-full" />
+          </div>
+
+          <!-- Export CSV -->
+          <button onclick="exportCSV()" title="Export CSV" class="hidden sm:flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition-colors duration-200">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            <span>Export</span>
+          </button>
+
+          <!-- Import CSV -->
+          <label title="Import CSV" class="hidden sm:flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition-colors duration-200 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+            </svg>
+            <span>Import</span>
+            <input type="file" id="importCSV" accept=".csv" class="hidden" onchange="importCSV(event)" />
+          </label>
+
+          <!-- Dark Mode Toggle -->
+          <button id="darkToggle" onclick="toggleDarkMode()" class="w-9 h-9 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors duration-200">
+            <svg id="sunIcon" class="w-4 h-4 text-amber-500 hidden" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+            </svg>
+            <svg id="moonIcon" class="w-4 h-4 text-slate-600" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+    <!-- Search bar (mobile) -->
+    <div class="flex md:hidden items-center bg-white dark:bg-slate-800 rounded-xl px-3 py-2.5 gap-2 mb-5 border border-slate-200 dark:border-slate-700 shadow-sm">
+      <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+      <input id="searchInputMobile" type="text" placeholder="Cari karyawan..." class="bg-transparent text-sm text-slate-700 dark:text-slate-300 placeholder-slate-400 outline-none w-full" />
+    </div>
+
+    <!-- STAT CARDS -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+      <div class="stat-card bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow duration-200">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs sm:text-sm font-500 text-slate-500 dark:text-slate-400">Total Karyawan</span>
+          <div class="w-8 h-8 rounded-lg bg-brand-50 dark:bg-brand-950 flex items-center justify-center">
+            <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+        </div>
+        <p id="statTotal" class="text-2xl sm:text-3xl font-800 text-slate-900 dark:text-white">0</p>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">karyawan terdaftar</p>
+      </div>
+
+      <div class="stat-card bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow duration-200">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs sm:text-sm font-500 text-slate-500 dark:text-slate-400">Departemen</span>
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950 flex items-center justify-center">
+            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+        </div>
+        <p id="statDept" class="text-2xl sm:text-3xl font-800 text-slate-900 dark:text-white">0</p>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">departemen aktif</p>
+      </div>
+
+      <div class="stat-card bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow duration-200">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs sm:text-sm font-500 text-slate-500 dark:text-slate-400">Jabatan</span>
+          <div class="w-8 h-8 rounded-lg bg-violet-50 dark:bg-violet-950 flex items-center justify-center">
+            <svg class="w-4 h-4 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+        </div>
+        <p id="statPosition" class="text-2xl sm:text-3xl font-800 text-slate-900 dark:text-white">0</p>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">jabatan unik</p>
+      </div>
+
+      <div class="stat-card bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow duration-200">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs sm:text-sm font-500 text-slate-500 dark:text-slate-400">Bergabung Bulan Ini</span>
+          <div class="w-8 h-8 rounded-lg bg-amber-50 dark:bg-amber-950 flex items-center justify-center">
+            <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+        </div>
+        <p id="statNew" class="text-2xl sm:text-3xl font-800 text-slate-900 dark:text-white">0</p>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">karyawan baru</p>
+      </div>
+    </div>
+
+    <!-- CHART SECTION -->
+    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 mb-6 shadow-sm">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h2 class="shiny-heading text-base font-700">Distribusi per Departemen</h2>
+          <p class="text-sm text-slate-400 dark:text-slate-500 mt-0.5">Jumlah karyawan tiap departemen</p>
+        </div>
+      </div>
+      <div id="deptChart" class="space-y-3">
+        <p class="text-sm text-slate-400 text-center py-6">Belum ada data karyawan</p>
+      </div>
+    </div>
+
+    <!-- TABLE SECTION -->
+    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+      <!-- Table Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800">
+        <div>
+          <h2 class="shiny-heading text-base font-700">Daftar Karyawan</h2>
+          <p id="tableSubtitle" class="text-sm text-slate-400 dark:text-slate-500 mt-0.5">Menampilkan semua karyawan</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <!-- Sort select -->
+          <select id="sortSelect" onchange="handleSort()" class="text-sm bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 outline-none focus:border-brand-400 transition-colors">
+            <option value="name-asc">Nama A–Z</option>
+            <option value="name-desc">Nama Z–A</option>
+            <option value="date-asc">Tanggal Lama</option>
+            <option value="date-desc">Tanggal Baru</option>
+            <option value="dept-asc">Departemen A–Z</option>
+          </select>
+          <!-- Mobile: export/import buttons -->
+          <button onclick="exportCSV()" class="sm:hidden flex items-center justify-center w-9 h-9 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading Spinner -->
+      <div id="loadingSpinner" class="hidden flex-col items-center justify-center py-16 gap-3">
+        <div class="w-8 h-8 border-2 border-brand-200 border-t-brand-600 rounded-full animate-spin"></div>
+        <p class="text-sm text-slate-400">Memproses data...</p>
+      </div>
+
+      <!-- Table (desktop) -->
+      <div id="tableContainer" class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-slate-50 dark:bg-slate-800/50 text-left">
+              <th class="px-4 sm:px-5 py-3.5 text-xs font-600 text-slate-500 dark:text-slate-400 uppercase tracking-wider">ID</th>
+              <th class="px-4 sm:px-5 py-3.5 text-xs font-600 text-slate-500 dark:text-slate-400 uppercase tracking-wider">Karyawan</th>
+              <th class="hidden md:table-cell px-4 sm:px-5 py-3.5 text-xs font-600 text-slate-500 dark:text-slate-400 uppercase tracking-wider">Jabatan</th>
+              <th class="hidden lg:table-cell px-4 sm:px-5 py-3.5 text-xs font-600 text-slate-500 dark:text-slate-400 uppercase tracking-wider">Departemen</th>
+              <th class="hidden xl:table-cell px-4 sm:px-5 py-3.5 text-xs font-600 text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tanggal Masuk</th>
+              <th class="hidden md:table-cell px-4 sm:px-5 py-3.5 text-xs font-600 text-slate-500 dark:text-slate-400 uppercase tracking-wider">Telepon</th>
+              <th class="px-4 sm:px-5 py-3.5 text-xs font-600 text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="employeeTable" class="divide-y divide-slate-100 dark:divide-slate-800">
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden flex-col items-center justify-center py-16 px-4 text-center">
+        <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-2xl flex items-center justify-center mb-4">
+          <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <p class="font-600 text-slate-700 dark:text-slate-300 mb-1" id="emptyTitle">Belum ada karyawan</p>
+        <p class="text-sm text-slate-400 dark:text-slate-500" id="emptyDesc">Buka halaman Registrasi untuk menambahkan data pertama</p>
+      </div>
+
+      <!-- Pagination -->
+      <div id="paginationContainer" class="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-5 py-3.5 border-t border-slate-100 dark:border-slate-800">
+        <p id="paginationInfo" class="text-xs text-slate-400 dark:text-slate-500"></p>
+        <div class="flex items-center gap-1" id="paginationBtns"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== MODAL: ADD / EDIT ===== -->
+  <div id="formModal" class="modal-overlay fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="modal-box bg-white dark:bg-slate-900 rounded-2xl w-full max-w-lg shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[90vh] flex flex-col">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex-shrink-0">
+        <div>
+          <h3 id="modalTitle" class="text-base font-700 text-slate-900 dark:text-white">Edit Karyawan</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Lengkapi semua field yang diperlukan</p>
+        </div>
+        <button onclick="closeModal()" class="w-8 h-8 flex items-center justify-center rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="overflow-y-auto flex-1 px-5 sm:px-6 py-5">
+        <form id="employeeForm" novalidate class="space-y-4">
+          <input type="hidden" id="editId" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-600 text-slate-600 dark:text-slate-400 mb-1.5">Nama Lengkap <span class="text-red-500">*</span></label>
+              <input type="text" id="fieldNama" placeholder="Masukkan nama lengkap" class="form-input w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 outline-none focus:border-brand-400 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200" />
+              <p id="errNama" class="hidden text-xs text-red-500 mt-1"></p>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-600 text-slate-600 dark:text-slate-400 mb-1.5">Email <span class="text-red-500">*</span></label>
+              <input type="email" id="fieldEmail" placeholder="nama@perusahaan.com" class="form-input w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 outline-none focus:border-brand-400 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200" />
+              <p id="errEmail" class="hidden text-xs text-red-500 mt-1"></p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-600 text-slate-600 dark:text-slate-400 mb-1.5">Nomor Telepon <span class="text-red-500">*</span></label>
+              <input type="tel" id="fieldTelepon" placeholder="08xx-xxxx-xxxx" class="form-input w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 outline-none focus:border-brand-400 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200" />
+              <p id="errTelepon" class="hidden text-xs text-red-500 mt-1"></p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-600 text-slate-600 dark:text-slate-400 mb-1.5">Tanggal Masuk <span class="text-red-500">*</span></label>
+              <input type="date" id="fieldTanggal" class="form-input w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 dark:text-slate-200 outline-none focus:border-brand-400 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200" />
+              <p id="errTanggal" class="hidden text-xs text-red-500 mt-1"></p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-600 text-slate-600 dark:text-slate-400 mb-1.5">Jabatan <span class="text-red-500">*</span></label>
+              <input type="text" id="fieldJabatan" placeholder="Mis: Software Engineer" class="form-input w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 outline-none focus:border-brand-400 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200" />
+              <p id="errJabatan" class="hidden text-xs text-red-500 mt-1"></p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-600 text-slate-600 dark:text-slate-400 mb-1.5">Departemen <span class="text-red-500">*</span></label>
+              <select id="fieldDepartemen" class="form-input w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 dark:text-slate-200 outline-none focus:border-brand-400 focus:bg-white dark:focus:bg-slate-800 transition-all duration-200">
+                <option value="">-- Pilih Departemen --</option>
+                <option>Engineering</option>
+                <option>Product</option>
+                <option>Design</option>
+                <option>Marketing</option>
+                <option>Sales</option>
+                <option>Finance</option>
+                <option>Human Resources</option>
+                <option>Operations</option>
+                <option>Legal</option>
+                <option>Customer Service</option>
+                <option>IT Support</option>
+                <option>Research & Development</option>
+                <option>Quality Assurance</option>
+                <option>Business Development</option>
+                <option>Content</option>
+                <option>Data Science</option>
+                <option>Public Relations</option>
+                <option>Administration</option>
+                <option>Procurement</option>
+                <option>Logistics</option>
+                <option>Strategy</option>
+                <option>Innovation</option>
+                <option>Customer Success</option>
+              </select>
+              <p id="errDepartemen" class="hidden text-xs text-red-500 mt-1"></p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-end gap-2 px-5 sm:px-6 py-4 border-t border-slate-100 dark:border-slate-800 flex-shrink-0">
+        <button onclick="closeModal()" class="px-4 py-2 text-sm font-500 text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition-colors duration-200">Batal</button>
+        <button onclick="submitForm()" id="submitBtn" class="px-5 py-2 text-sm font-600 text-white bg-brand-600 hover:bg-brand-700 active:scale-95 rounded-xl shadow-lg shadow-brand-600/25 transition-all duration-200 flex items-center gap-2">
+          <span id="submitBtnText">Simpan</span>
+          <div id="submitSpinner" class="hidden w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: DELETE CONFIRM ===== -->
+  <div id="deleteModal" class="modal-overlay fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="modal-box bg-white dark:bg-slate-900 rounded-2xl w-full max-w-sm shadow-2xl border border-slate-200 dark:border-slate-800 p-6">
+      <div class="flex items-center justify-center w-12 h-12 bg-red-50 dark:bg-red-950 rounded-2xl mx-auto mb-4">
+        <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+        </svg>
+      </div>
+      <h3 class="text-base font-700 text-slate-900 dark:text-white text-center mb-1">Hapus Karyawan?</h3>
+      <p id="deleteDesc" class="text-sm text-slate-500 dark:text-slate-400 text-center mb-6">Tindakan ini tidak dapat dibatalkan.</p>
+      <div class="flex items-center gap-2">
+        <button onclick="closeDeleteModal()" class="flex-1 py-2.5 text-sm font-500 text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition-colors duration-200">Batal</button>
+        <button onclick="confirmDelete()" id="deleteBtn" class="flex-1 py-2.5 text-sm font-600 text-white bg-red-500 hover:bg-red-600 active:scale-95 rounded-xl shadow-lg shadow-red-500/25 transition-all duration-200 flex items-center justify-center gap-2">
+          <span id="deleteBtnText">Hapus</span>
+          <div id="deleteSpinner" class="hidden w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- FOOTER -->
+  <footer class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-slate-500 dark:text-slate-400">
+    <p>Dibuat oleh: Farhan Rahmadil Arsy @ Copy Righy 2026 <span class="brand-title brand-title-footer font-semibold"> YUK SUKSES </span></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

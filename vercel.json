@@ -1,20 +1,8 @@
 {
   "version": 2,
-  "functions": {
-    "api/index.js": {
-      "includeFiles": [
-        "assets/**",
-        "db.json",
-        "index.html",
-        "registrasi.html",
-        "script.js",
-        "style.css"
-      ]
-    }
-  },
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/api/:path*",
       "destination": "/api/index.js"
     }
   ]
